@@ -4,6 +4,8 @@ from torch import Tensor
 import torch
 import torch.nn as nn
 from .feedforward_module import FeedForwardModule
+from .multihead_module import MultiHeadedSelfAttentionModule
+from .conv_module import ConvolutionModule
 
 # feedforward module * 1/2 + input * 1/2
 # multiheaded module * 1 + input * 1
@@ -65,7 +67,7 @@ class ConformerBlock(nn.Module):
                 ),
             ),
             ResidualConnectionModule(
-                module=ConformerConvModule(
+                module=ConvolutionModule(
                     in_channels=encoder_dim,
                     kernel_size=conv_kernel_size,
                     expansion_factor=conv_expansion_factor,
